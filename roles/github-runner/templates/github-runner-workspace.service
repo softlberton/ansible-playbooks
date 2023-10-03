@@ -1,0 +1,13 @@
+# Service unit for maintenance tasks on action runners.
+# This is a solution for timed tasks using systemd.
+
+[Unit]
+Description=Maintenance tasks on action runners
+Wants=github-runner-workspace.timer
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /home/ec2-user/scripts/runner-workspace.sh
+
+[Install]
+WantedBy=multi-user.target

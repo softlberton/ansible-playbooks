@@ -1,0 +1,6 @@
+- name: GITHUB - SELF-HOSTED RUNNER
+  hosts: localhost
+  become: false
+  gather_facts: yes
+  roles:
+    - { role: github-runner }

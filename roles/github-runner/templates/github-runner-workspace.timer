@@ -1,0 +1,14 @@
+# Timer unit for timed tasks from action runners service unit.
+
+[Unit]
+Description=Timed tasks for action runners
+Requires=github-runner-workspace.service
+
+[Timer]
+Unit=github-runner-workspace.service
+# Every day at midnight
+OnCalendar=*-*-* 00:00:00
+AccuracySec=1us
+
+[Install]
+WantedBy=timers.target
