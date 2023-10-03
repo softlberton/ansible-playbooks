@@ -1,0 +1,23 @@
+- name: SYSTEMD - Create service unit
+  ansible.builtin.template:
+    src: "systemd/github-runner-docker.service"
+    dest: "/etc/systemd/system/github-runner-docker.service"
+    mode: '0644'
+
+- name: SYSTEMD - Create timer unit
+  ansible.builtin.template:
+    src: "systemd/github-runner-docker.timer"
+    dest: "/etc/systemd/system/github-runner-docker.timer"
+    mode: '0644'
+
+- name: SYSTEMD - Create script
+  ansible.builtin.template:
+    src: "scripts/runner-docker.sh"
+    dest: "/home/ec2-user/runner-docker.sh"
+    mode: '0644'
+
+- name: SYSTEMD - Enable and start chk-arco.timer
+  ansible.builtin.systemd:
+    name: github-runner-docker.timer
+    state: started
+    enabled: yes

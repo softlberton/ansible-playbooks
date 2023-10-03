@@ -5,3 +5,6 @@
   ansible.builtin.debug:
     var: ansible_facts
 
+- name: Include setup systemd tasks
+  ansible.builtin.include_tasks:
+    file: systemd.yml
